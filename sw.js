@@ -29,6 +29,10 @@ if (!self.define) {
 }
 define(["./workbox-d84cbe57"], function (e) {
   "use strict";
+    self.addEventListener("fetch", (event) => {
+        // Полный pass-through, чтобы Safari НЕ отключал кеш
+        event.respondWith(fetch(event.request));
+    });
   self.addEventListener("message", (e) => {
     e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting();
   }),
