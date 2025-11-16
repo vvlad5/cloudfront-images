@@ -35,7 +35,7 @@ define(["./workbox-d84cbe57"], function (e) {
       e.clientsClaim(),
       e.registerRoute(
         ({ url: e }) => e.origin.includes("cdn.damou.by"),
-        async ({ request: e }) => e,
+        async ({ request: e }) => fetch(e),
         "GET",
       ),
       e.cleanupOutdatedCaches();
