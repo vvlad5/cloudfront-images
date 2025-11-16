@@ -52,6 +52,7 @@ define(["exports"], (function (t) {
         addFetchListener() {
             self.addEventListener("fetch", (t => {
                 console.log(t.request.url, t.request.url.includes("cdn.damou.by"));
+                return;
                 const {request: e} = t, s = this.handleRequest({request: e, event: t});
                 s && t.respondWith(s)
             }))
@@ -72,7 +73,6 @@ define(["exports"], (function (t) {
 
         handleRequest({request: t, event: e}) {
             const s = new URL(t.url, location.href);
-            console.log('protocol', s.protocol);
             if (!s.protocol.startsWith("http")) return;
             const n = s.origin === location.origin, {params: i, route: r} = this.findMatchingRoute({
                 event: e,
@@ -82,19 +82,18 @@ define(["exports"], (function (t) {
             });
             let a = r && r.handler;
             const o = t.method;
-            console.log('this.i', this.i);
-            console.log('handler', a);
             if (!a && this.i.has(o) && (a = this.i.get(o)), !a) return;
             let c;
             try {
+                console.log('handler', a);
                 c = a.handle({url: s, request: t, event: e, params: i})
             } catch (t) {
                 c = Promise.reject(t)
             }
             const h = r && r.catchHandler;
-            console.log('catch handler', h);
             return c instanceof Promise && (this.o || h) && (c = c.catch((async n => {
                 if (h) try {
+                    console.log('catch handler', h);
                     return await h.handle({url: s, request: t, event: e, params: i})
                 } catch (t) {
                     t instanceof Error && (n = t)
