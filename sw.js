@@ -33,10 +33,6 @@ define(["./workbox-d84cbe57"], function (e) {
           e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting();
       }),
       e.clientsClaim(),
-      e.registerRoute(
-        ({ url: e }) => e.origin.includes("cdn.damou.by"),
-        async ({ request: e }) => fetch(e),
-        "GET",
-      ),
+      e.precacheAndRoute([], { clean: true, ignoreURLParametersMatching: [] }),
       e.cleanupOutdatedCaches();
 });
