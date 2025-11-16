@@ -34,16 +34,5 @@ define(["./workbox-d84cbe57"], function (e) {
   }),
     e.clientsClaim(),
     e.precacheAndRoute([], { ignoreURLParametersMatching: [/.*/] }),
-    e.cleanupOutdatedCaches(),
-    e.registerRoute(
-      /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-      new e.StaleWhileRevalidate({
-        cacheName: "static-image-assets",
-        plugins: [
-          new e.ExpirationPlugin({ maxEntries: 64, maxAgeSeconds: 604800 }),
-          { handlerDidError: async ({ request: e }) => self.fallback(e) },
-        ],
-      }),
-      "GET",
-    );
+    e.cleanupOutdatedCaches();
 });
