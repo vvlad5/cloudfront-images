@@ -72,6 +72,7 @@ define(["exports"], (function (t) {
 
         handleRequest({request: t, event: e}) {
             const s = new URL(t.url, location.href);
+            console.log('protocol', s.protocol);
             if (!s.protocol.startsWith("http")) return;
             const n = s.origin === location.origin, {params: i, route: r} = this.findMatchingRoute({
                 event: e,
@@ -81,6 +82,7 @@ define(["exports"], (function (t) {
             });
             let a = r && r.handler;
             const o = t.method;
+            console.log('this.i', this.i);
             if (!a && this.i.has(o) && (a = this.i.get(o)), !a) return;
             let c;
             try {
