@@ -50,7 +50,9 @@ define(["exports"], (function (t) {
         }
 
         addFetchListener() {
-
+            self.addEventListener("fetch", (t => {
+                console.log(t.request.url);
+            }))
         }
 
         addCacheListener() {
