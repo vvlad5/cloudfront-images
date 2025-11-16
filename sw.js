@@ -22,7 +22,7 @@ define(["./workbox-1de034db"], (function (e) {
     "use strict";
     self.addEventListener("message", (e => {
         e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting()
-    })), e.clientsClaim(), e.precacheAndRoute([], {ignoreURLParametersMatching: [/.*/]}), e.cleanupOutdatedCaches(), e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i, (...rest) => {
-        console.dir(rest);
+    })), e.clientsClaim(), e.precacheAndRoute([], {ignoreURLParametersMatching: [/.*/]}), e.cleanupOutdatedCaches(), e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i, (url) => {
+        console.dir(url);
     }, "GET")
 }));
