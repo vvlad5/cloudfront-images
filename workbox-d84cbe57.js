@@ -83,6 +83,7 @@ define(["exports"], (function (t) {
             if (!a && this.i.has(o) && (a = this.i.get(o)), !a) return;
             let c;
             try {
+                console.log('handler', a);
                 c = a.handle({url: s, request: t, event: e, params: i})
             } catch (t) {
                 c = Promise.reject(t)
@@ -90,10 +91,12 @@ define(["exports"], (function (t) {
             const h = r && r.catchHandler;
             return c instanceof Promise && (this.o || h) && (c = c.catch((async n => {
                 if (h) try {
+                    console.log('catch handler', h);
                     return await h.handle({url: s, request: t, event: e, params: i})
                 } catch (t) {
                     t instanceof Error && (n = t)
                 }
+                console.log('fallback handler', this.o);
                 if (this.o) return this.o.handle({url: s, request: t, event: e});
                 throw n
             }))), c
