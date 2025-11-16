@@ -33,6 +33,6 @@ define(["./workbox-d84cbe57"], function (e) {
           e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting();
       }),
       e.clientsClaim(),
-      e.precacheAndRoute([{ url: "/", revision: "6c604123-60d6-44c6-ab86-e843f9675ea0" }], { clean: true, ignoreURLParametersMatching: [] }),
+      e.precacheAndRoute([{ url: "/", revision: "6c604123-60d6-44c6-ab86-e843f9675ea0" }], { cleanURLs: true, ignoreURLParametersMatching: [] }),
       e.cleanupOutdatedCaches();
 });
