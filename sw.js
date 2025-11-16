@@ -20,7 +20,7 @@ if (!self.define) {
 }
 define(["./workbox-445a40b5"], (function (e) {
     "use strict";
-    importScripts("fallback-28d0d403-fa27-44e6-a276-2526efad7dcb.js"), self.addEventListener("message", (e => {
+    self.addEventListener("message", (e => {
         e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting()
     })), e.clientsClaim(), e.precacheAndRoute([], {ignoreURLParametersMatching: [/.*/]}), e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i, new e.StaleWhileRevalidate({
         cacheName: "static-image-assets",
