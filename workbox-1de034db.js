@@ -135,6 +135,9 @@ define(["exports"], (function (t) {
     const c = () => (o || (o = new a, o.addFetchListener(), o.addCacheListener()), o);
 
     function h(t, e, n) {
+        console.dir(t);
+        console.dir(e);
+        console.dir(n);
         let a;
         if ("string" == typeof t) {
             const s = new URL(t, location.href);
