@@ -22,11 +22,5 @@ define(["./workbox-1de034db"], (function (e) {
     "use strict";
     self.addEventListener("message", (e => {
         e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting()
-    })), e.clientsClaim(), e.precacheAndRoute([], {ignoreURLParametersMatching: [/.*/]}), e.cleanupOutdatedCaches(), e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i, new e.StaleWhileRevalidate({
-        cacheName: "static-image-assets",
-        plugins: [new e.ExpirationPlugin({
-            maxEntries: 64,
-            maxAgeSeconds: 604800
-        }), {handlerDidError: async ({request: e}) => self.fallback(e)}]
-    }), "GET")
+    })), e.clientsClaim(), e.precacheAndRoute([], {ignoreURLParametersMatching: [/.*/]}), e.cleanupOutdatedCaches()
 }));
