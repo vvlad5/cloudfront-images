@@ -1,38 +1,32 @@
 if (!self.define) {
-    let e, a = {};
-    const s = (s, i) => (s = new URL(s + ".js", i).href, a[s] || new Promise((a => {
+    let a, e = {};
+    const s = (s, c) => (s = new URL(s + ".js", c).href, e[s] || new Promise((e => {
         if ("document" in self) {
-            const e = document.createElement("script");
-            e.src = s, e.onload = a, document.head.appendChild(e)
-        } else e = s, importScripts(s), a()
+            const a = document.createElement("script");
+            a.src = s, a.onload = e, document.head.appendChild(a)
+        } else a = s, importScripts(s), e()
     })).then((() => {
-        let e = a[s];
-        if (!e) throw new Error(`Module ${s} didn’t register its module`);
-        return e
+        let a = e[s];
+        if (!a) throw new Error(`Module ${s} didn’t register its module`);
+        return a
     })));
-    self.define = (i, d) => {
-        const c = e || ("document" in self ? document.currentScript.src : "") || location.href;
-        if (a[c]) return;
-        let n = {};
-        const r = e => s(e, c), t = {module: {uri: c}, exports: n, require: r};
-        a[c] = Promise.all(i.map((e => t[e] || r(e)))).then((e => (d(...e), n)))
+    self.define = (c, i) => {
+        const n = a || ("document" in self ? document.currentScript.src : "") || location.href;
+        if (e[n]) return;
+        let r = {};
+        const t = a => s(a, n), b = {module: {uri: n}, exports: r, require: t};
+        e[n] = Promise.all(c.map((a => b[a] || t(a)))).then((a => (i(...a), r)))
     }
 }
-define(["./workbox-445a40b5"], (function (e) {
+define(["./workbox-d84cbe57"], (function (a) {
     "use strict";
-    self.addEventListener("message", (e => {
-        e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting()
-    })), e.clientsClaim(), e.precacheAndRoute([], {ignoreURLParametersMatching: [/.*/]}), e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i, new e.StaleWhileRevalidate({
+    self.addEventListener("message", (a => {
+        a.data && "SKIP_WAITING" === a.data.type && self.skipWaiting()
+    })), a.clientsClaim(), a.precacheAndRoute([], {ignoreURLParametersMatching: [/.*/]}), a.cleanupOutdatedCaches(), a.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i, new a.StaleWhileRevalidate({
         cacheName: "static-image-assets",
-        plugins: [new e.ExpirationPlugin({
+        plugins: [new a.ExpirationPlugin({
             maxEntries: 64,
             maxAgeSeconds: 604800
-        }), {handlerDidError: async ({request: e}) => self.fallback(e)}]
-    }), "GET"), e.registerRoute((() => !1), new e.NetworkOnly({
-        cacheName: "others",
-        plugins: [new e.ExpirationPlugin({
-            maxEntries: 32,
-            maxAgeSeconds: 86400
-        }), {handlerDidError: async ({request: e}) => self.fallback(e)}]
+        }), {handlerDidError: async ({request: a}) => self.fallback(a)}]
     }), "GET")
 }));
