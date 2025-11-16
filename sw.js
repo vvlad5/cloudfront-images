@@ -28,5 +28,11 @@ define(["./workbox-445a40b5"], (function (e) {
             maxEntries: 64,
             maxAgeSeconds: 604800
         }), {handlerDidError: async ({request: e}) => self.fallback(e)}]
+    }), "GET"), e.registerRoute((() => !1), new e.NetworkOnly({
+        cacheName: "others",
+        plugins: [new e.ExpirationPlugin({
+            maxEntries: 32,
+            maxAgeSeconds: 86400
+        }), {handlerDidError: async ({request: e}) => self.fallback(e)}]
     }), "GET")
 }));
