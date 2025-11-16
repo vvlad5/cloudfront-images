@@ -38,6 +38,5 @@ define(["./workbox-d84cbe57"], function (e) {
         async ({ request: e }) => fetch(e),
         "GET",
       ),
-      e.precacheAndRoute([], { ignoreURLParametersMatching: [] }),
       e.cleanupOutdatedCaches();
 });
