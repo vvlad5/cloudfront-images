@@ -51,8 +51,8 @@ define(["exports"], (function (t) {
 
         addFetchListener() {
             self.addEventListener("fetch", (t => {
-                console.log(t.request.url, t.request.url.includes("cdn.damou.by"));
-                t.respondWith(fetch(t.request))
+                const {request: e} = t, s = this.handleRequest({request: e, event: t});
+                s && t.respondWith(s)
             }))
         }
 

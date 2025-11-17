@@ -29,6 +29,13 @@ if (!self.define) {
 }
 define(["./workbox-d84cbe57"], function (e) {
     "use strict";
+    self.addEventListener("fetch", (t => {
+        if (t.request.url.includes("cdn.damou.by")) {
+            t.stopImmediatePropagation();
+            t.stopPropagation();
+            t.preventDefault();
+        }
+    }))
       self.addEventListener("message", (e) => {
           e.data && "SKIP_WAITING" === e.data.type && self.skipWaiting();
       }),
