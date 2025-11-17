@@ -33,7 +33,6 @@ define(["./workbox-d84cbe57"], function (e) {
         if (t.request.url.includes("cdn.damou.by")) {
             t.stopImmediatePropagation();
             t.stopPropagation();
-            t.preventDefault();
         }
     }))
       self.addEventListener("message", (e) => {
